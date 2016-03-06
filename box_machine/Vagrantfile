@@ -1,0 +1,25 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = '2'
+
+Vagrant.require_version '>= 1.5.4'
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.omnibus.chef_version = '11.6.0'
+
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.provider 'virtualbox' do |v|
+    v.memory = 256
+  end
+
+
+  config.vm.define 'node' do |node|
+    node.vm.provision 'configure', type: 'shell',
+      path: 'install_and_configure.sh'
+    node.vm.provision 'make_small', type: 'shell',
+      path: 'manage/internal/run_in_guest_make_box_small.sh'
+  end
+
+end
+

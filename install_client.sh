@@ -27,7 +27,7 @@ echo "${YELLOW}##### Проверяем окружение #####${NC}"
 echo "${GREEN}### Включаем IP Forwarding (необязательно) ###${NC}"
 echo 1 > /proc/sys/net/ipv4/ip_forward
 echo "${GREEN}### Устанавливаем ПО ###${NC}"
-sudo apt-get install vlan quagga bridge-utils
+#sudo apt-get install vlan quagga bridge-utils
 echo "${GREEN}### Проверяем 8021q ###${NC}"
 sudo modprobe 8021q
 lsmod | grep 8021q
