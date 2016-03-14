@@ -57,6 +57,9 @@ echo "${GREEN}### Устанавливаем адрес роутера ${router_
 #echo "route add -net default gw ${router_address} dev ${client_interface}.${client_vlan}"
 route add -net default gw $router_address dev $client_interface.$client_vlan
 
+echo "${GREEN}### Направляем 192.168.0.0/16 через адрес роутера ${router_address} через VLAN интерфейс ${client_interface}.${client_vlan} ###${NC}"
+ip route add 192.168.0.0/16 via $router_address dev $client_interface.$client_vlan
+
 echo "${GREEN}### Проверяем таблицу маршрутизации ###${NC}"
 netstat -rn
 

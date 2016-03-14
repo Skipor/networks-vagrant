@@ -14,6 +14,7 @@ vagrant provision --provision-with make_small
 rm -f $box_name.box
 vagrant package --output $box_name.box
 vagrant box add $box_name  $box_name.box
+vagrant halt
 
 
 

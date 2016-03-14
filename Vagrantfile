@@ -8,6 +8,10 @@ Vagrant.require_version '>= 1.5.4'
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.omnibus.chef_version = '11.6.0'
 
+  ############################
+  #BEGIN OF CUSTOM CONFIGURATION
+  ############################
+  
   config.vm.provider 'virtualbox' do |v|
     v.memory = 256
   end
@@ -21,14 +25,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.box = "https://dl.dropboxusercontent.com/u/102236368/netlab-v1.box"
   
   #custom box from internet, simply stored in dropbox
-  config.vm.box = 'netlab-v1'
-  config.vm.box_url = 'https://dl.dropboxusercontent.com/u/102236368/netlab-v1.box'
+  config.vm.box = 'netlab-v2'
+  config.vm.box_url = 'https://dl.dropboxusercontent.com/u/102236368/netlab-v2.box'
 
 
   # paths can be gist or URL or local files
   # example gist paths
-  #node_script_path   = 'https://gist.github.com/Skipor/0744cf2f5b58a42f9d0e#file-install_client-sh'
-  #router_script_path = 'https://gist.github.com/Skipor/0744cf2f5b58a42f9d0e#file-install_router-sh' 
+  #node_script_path   = 'https://gist.githubusercontent.com/Skipor/0744cf2f5b58a42f9d0e/raw/6bd122cae769c5e04b7b86fbbfba32f869c379b7/install_client.sh'
+  #router_script_path = 'https://gist.github.com/Skipor/0744cf2f5b58a42f9d0e/raw/6bd122cae769c5e04b7b86fbbfba32f869c379b7/install_router.sh'
   
   # local paths
   node_script_path   = 'config/install_client.sh'
@@ -38,7 +42,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # WARNING!!! Destroy machines before change this parametrs to preasume machines LEAK.
   # machines that exists and will not exists in new Vagrantfile will LEAK, and can be running in background. 
   # But you still can delete them from virtualbox
-  host_interface = 'en0: Wi-Fi (AirPort)'  #TODO try array, should work
+  host_interface = ['en0: Wi-Fi (AirPort)']  #TODO try array, should work
   network_prefix = '192.168'
   routers_count = 3
   nodes_count = 1

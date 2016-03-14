@@ -1,2 +1,2 @@
 #! /bin/bash
-vagrant reload
+vagrant reload --provision
