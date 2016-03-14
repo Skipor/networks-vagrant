@@ -1,4 +1,4 @@
-## Vagrant environment for networks couse labs
+## Vagrant environment for networks course labs
 ### Vagrant
 * Vagrant is a tool for building and distributing development environments
 	* dowload it from package manager or [from site](https://www.vagrantup.com/downloads.html)
