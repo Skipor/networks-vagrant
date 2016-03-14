@@ -7,7 +7,7 @@
 	* they are ruby scrips, so you can write real program 
 * Vagrant Comand Line Interface is not complex, but there are bash scripts in `./manage` folder for almost all basic needs. Warning!! use them from repo folder, as `./manage/start.sh`
 
-* To start download Vagrant, clone repo, cd to repo folder, `./manage/start.sh` or `vagrant up`
+* To start download Virutualbox and Vagrant, clone repo, cd to repo folder, `./manage/start.sh` or `vagrant up`
 	* see scripts in `./manage` folder or `vagrant help` to know what you can
 	* `./manage/ssh.sh router-1` or `vagrant ssh router-1` for connecting to `router-1` machine, and any other same way
 * We are using virtualbox provider, so every Vagrant machine is virtualbox machine
