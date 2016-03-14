@@ -38,12 +38,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   node_script_path   = 'config/install_client.sh'
   router_script_path = 'config/install_router.sh' 
 
-  #BEGIN OF CUSTOM CONFIGURATION
+  host_interface = [  #priority list of interfaces to brige on host machine 
+    'en0: Wi-Fi (AirPort)', 
+    'en0',
+    'eth0', 
+    'wlan0'
+  ] 
+  network_prefix = '192.168'
+
+
   # WARNING!!! Destroy machines before change this parametrs to preasume machines LEAK.
   # machines that exists and will not exists in new Vagrantfile will LEAK, and can be running in background. 
   # But you still can delete them from virtualbox
-  host_interface = ['en0: Wi-Fi (AirPort)']  #TODO try array, should work
-  network_prefix = '192.168'
   routers_count = 3
   nodes_count = 1
 
