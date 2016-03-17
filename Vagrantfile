@@ -3,17 +3,16 @@
 
 VAGRANTFILE_API_VERSION = '2'
 
-Vagrant.require_version '>= 1.5.4'
+Vagrant.require_version '>= 1.8'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.omnibus.chef_version = '11.6.0'
-
   ############################
   #BEGIN OF CUSTOM CONFIGURATION
   ############################
   
   config.vm.provider 'virtualbox' do |v|
     v.memory = 256
+    v.linked_clone = true
   end
   # box from official repo. pure ubuntu
   # config.vm.box = "ubuntu/trusty64"
