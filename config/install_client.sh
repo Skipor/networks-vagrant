@@ -35,10 +35,11 @@ echo "${YELLOW}##### Поднимаем VLAN #####${NC}"
 echo "${GREEN}### Создаем VLAN ${client_vlan} ###${NC}"
 vconfig add $client_interface $client_vlan
 
-sleep 0.5
-
+#original
+sleep 0.5 
 echo "${GREEN}### Поднимаем интерфейс с IPv4 адресом (необязательно) ###${NC}"
 ifconfig $client_interface.$client_vlan 192.168.$client_vlan.$client_number up
+sleep 0.5
 
 echo "${YELLOW}##### Настройка таблицы маршрутизации #####${NC}"
 echo "${GREEN}### Устанавливаем default gateway IPv6 ###${NC}"

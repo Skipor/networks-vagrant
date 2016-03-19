@@ -12,7 +12,7 @@ if [ "$#" -ne 3 ]; then
     exit 1
 fi
 
-vlans=(11 12 13 14);
+vlans=(14 24 34 44);
 
 router_interface=$1
 router_number=$2

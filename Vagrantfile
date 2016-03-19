@@ -19,7 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   config.vm.provider 'virtualbox' do |v|
     v.memory = 256
-    v.linked_clone = true
+#    v.linked_clone = true
   end
   # box from official repo. pure ubuntu
   # config.vm.box = "ubuntu/trusty64"
@@ -47,7 +47,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   # local paths
   node_script_path   = 'config/install_client.sh'
-  router_script_path = 'config/install_router.sh' 
+  #router_script_path = 'config/install_router.sh' 
 
   host_interface = [  #priority list of interfaces to brige on host machine 
     'en0: Wi-Fi (AirPort)', 
@@ -61,7 +61,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # WARNING!!! Destroy machines before change this parametrs to preasume machines LEAK.
   # machines that exists and will not exists in new Vagrantfile will LEAK, and can be running in background. 
   # But you still can delete them from virtualbox
-  routers_count = 3
+  routers_count = 4
   nodes_count = 1
 
   ############################
@@ -90,7 +90,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       router.vm.provision 'shell',
         inline: "echo hello from #{router_name}"
       router.vm.provision 'shell' do |s| 
-        s.path = router_script_path
+        s.path = "./config/install_router_#{router_num}.sh"
         s.args = [guest_brige, "#{router_num}", "#{routers_count}"]
       end
 
