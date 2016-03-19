@@ -26,7 +26,7 @@ echo "${GREEN}### Включаем IPv6 Forwarding ###${NC}"
 echo 1 > /proc/sys/net/ipv6/conf/all/forwarding
 # sysctl net.ipv6.conf.eth2.accept_ra=2
 echo "${GREEN}### Устанавливаем ПО ###${NC}"
-#sudo apt-get install vlan quagga bridge-utils isc-dhcp-server
+sudo apt-get install vlan quagga bridge-utils isc-dhcp-server
 
 echo "${GREEN}### Проверяем 8021q ###${NC}"
 sudo modprobe 8021q

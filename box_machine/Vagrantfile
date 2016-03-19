@@ -10,25 +10,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = 'ubuntu/trusty64'
   config.vm.provider 'virtualbox' do |vb|
     vb.memory = 1024
-    # Set the number of virtual CPUs for the virtual machine
-#    vb.customize ["modifyvm", :id, "--cpus", "2"]
-#    vb.customize ["modifyvm", :id, "--graphicscontroller", "vboxvga"]
-#    vb.customize ["modifyvm", :id, "--vram", "128"]
-    # Enabling the I/O APIC is required for 64-bit guest operating systems, especially Windows Vista;
-    # it is also required if you want to use more than one virtual CPU in a VM.
-#    vb.customize ["modifyvm", :id, "--ioapic", "on"]
-    # Enable the use of hardware virtualization extensions (Intel VT-x or AMD-V) in the processor of your host system
-#    vb.customize ["modifyvm", :id, "--hwvirtex", "on"]
-    #  Enable, if Guest Additions are installed, whether hardware 3D acceleration should be available
-#    vb.customize ["modifyvm", :id, "--accelerate3d", "on"]   
   end
 
   config.vm.define 'box_machine' do |node|
     node.vm.provision 'configure', type: 'shell',
       path: 'install_and_configure.sh'
-
-    node.vm.provision 'gui', type: 'shell',
-      path: 'install_gui.sh'
 
     node.vm.provision 'make_small', type: 'shell',
       path: 'manage/internal/run_in_guest_make_box_small.sh'

@@ -20,7 +20,7 @@ client_vlan=$router_number$router_number
 
 echo "${YELLOW}##### Проверяем окружение #####${NC}"
 echo "${GREEN}### Устанавливаем ПО ###${NC}"
-#sudo apt-get install vlan
+sudo apt-get install vlan
 echo "${GREEN}### Проверяем 8021q ###${NC}"
 sudo modprobe 8021q
 lsmod | grep 8021q

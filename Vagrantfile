@@ -6,6 +6,13 @@ VAGRANTFILE_API_VERSION = '2'
 Vagrant.require_version '>= 1.8'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  #packages will be dowloaded once on machines
+  #apt-get error if use machine same time
+  if Vagrant.has_plugin?("vagrant-cachier") 
+    config.cache.scope = :box
+  end
+
+  
   ############################
   #BEGIN OF CUSTOM CONFIGURATION
   ############################
@@ -24,8 +31,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.box = "https://dl.dropboxusercontent.com/u/102236368/netlab-v1.box"
   
   #custom box from internet, simply stored in dropbox
-  config.vm.box = 'netlab-v2'
-  config.vm.box_url = 'https://dl.dropboxusercontent.com/u/102236368/netlab-v2.box'
+  #lab2 box
+  #config.vm.box = 'netlab-v2'
+  #config.vm.box_url = 'https://dl.dropboxusercontent.com/u/102236368/netlab-v2.box'
+
+  #lab3 box
+  config.vm.box = 'netlab-v3'
+  config.vm.box_url = 'https://dl.dropboxusercontent.com/u/102236368/netlab-v3.box'
 
 
   # paths can be gist or URL or local files
@@ -72,8 +84,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       bridge: host_interface#, 
       #auto_config: false
       
-     config.vm.provision 'shell', 
-       inline: 'cp -f /vagrant/config/daemons /etc/quagga/daemons'
+     #config.vm.provision 'shell', inline: 'cp -f /vagrant/config/daemons /etc/quagga/daemons'
 
 
       router.vm.provision 'shell',
