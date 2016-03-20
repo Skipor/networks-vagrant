@@ -7,6 +7,9 @@ Vagrant.require_version '>= 1.8'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #check chef version in box
+  if not Vagrant.has_plugin?('vagrant-omnibus') 
+    raise 'Error: no omnibus plugin! Install manualy or run ./install_plugins.sh'
+  end
   config.omnibus.chef_version = '11.6.0'
 
   #packages will be dowloaded once on machines
