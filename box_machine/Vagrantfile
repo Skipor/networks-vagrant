@@ -6,6 +6,7 @@ VAGRANTFILE_API_VERSION = '2'
 Vagrant.require_version '>= 1.5.4'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.omnibus.chef_version = '11.6.0'
 
   config.vm.box = 'ubuntu/trusty64'
   config.vm.provider 'virtualbox' do |vb|

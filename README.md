@@ -7,10 +7,15 @@
 	* they are ruby scrips, so you can write real program 
 * Vagrant Comand Line Interface is not complex, but there are bash scripts in `./manage` folder for almost all basic needs. Warning!! use them from repo folder, as `./manage/start.sh`
 
-* To start download Virutualbox and Vagrant, clone repo, cd to repo folder, `./manage/start.sh` or `vagrant up`
+* To start 
+  * download and install Virutualbox and Vagrant
+  * clone repo, cd to repo folder 
+  * `./install_plugins.sh`
+  * `./manage/start.sh` or `vagrant up`
 	* see scripts in `./manage` folder or `vagrant help` to know what you can
 	* `./manage/ssh.sh router-1` or `vagrant ssh router-1` for connecting to `router-1` machine, and any other same way
 * We are using virtualbox provider, so every Vagrant machine is virtualbox machine
+
 	
 ### Main environment 
 * Main Vagrantfile defines several machines.
@@ -29,9 +34,19 @@
 	*   `node_script_path`  and `router_script_path` defines machine configuration scripts
 		* they are local paths or URL
 		* by default they are in `./config` folder
+  * `topology_script_dir`
+    * output dirrectory for topology scritps
 	* `config.vm.box` box for all machines
 		*  see **About boxes** for details
 	* `v.memory` memory per one machine
+
+### Comand Line Interface usage examples
+* `vagrant provision "/node.*/"`
+  * run all configuration scripts on machines mached "node.\* " regex (all clients)
+* `vagrant reload "router.*"`
+  * reboot and run configure scripts on routers
+* `vagrant reload router-1 --provision`
+  * reboot and run configure scripts and other configurantion (script generation, e.t.c.) on router-1
 
 ### About boxes
 

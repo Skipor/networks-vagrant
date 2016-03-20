@@ -6,17 +6,33 @@ CYAN='\033[0;36m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-if [ "$#" -ne 3 ]; then
+if [ "$#" -ne 4 ]; then
     echo "${RED}Ошибка: неверное количество параметров${NC}"
-    echo "Usage: sudo ./create_router.sh ИНТЕРФЕЙС_РОУТЕРА НОМЕР_РОУТЕРА КОЛИЧЕСТВО_РОУТЕРОВ"
+    echo "Usage: sudo ./create_router.sh ИНТЕРФЕЙС_РОУТЕРА НОМЕР_РОУТЕРА КОЛИЧЕСТВО_РОУТЕРОВ СПИСОК_VLAN"
     exit 1
 fi
 
-vlans=(11 12 13 14);
+#vlans=(11 12 13 14);
+vlans=();
+
+for v in $4; 
+	do vlans+=(${v}); 
+done;
+echo ${newarray[*]}
+
+vlan_count=${#vlans[*]};
+
+echo "vlans count:" "${vlan_count}" 
+echo "vlan list:" "${vlans[*]}"
 
 router_interface=$1
 router_number=$2
 total_number=$3
+
+if [ ${vlan_count} -ne ${total_number} ]; then
+    echo "${RED}Ошибка: количество vlan должно быть равно количеству роутеров${NC}"
+    exit 1
+fi
 
 #next_number=$(( (router_number - 1 + 1) % total_number + 1 ))
 #prev_number=$(( (router_number - 1 - 1 + total_number) % total_number + 1 ))
