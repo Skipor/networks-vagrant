@@ -7,16 +7,16 @@ Vagrant.require_version '>= 1.8'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #check chef version in box
-  if not Vagrant.has_plugin?('vagrant-omnibus') 
-    raise 'Error: no omnibus plugin! Install manualy or run ./install_plugins.sh'
-  end
-  config.omnibus.chef_version = '11.6.0'
+ # if not Vagrant.has_plugin?('vagrant-omnibus') 
+ #   raise 'Error: no omnibus plugin! Install manualy or run ./install_plugins.sh'
+ # end
+ # config.omnibus.chef_version = '11.6.0'
 
   #packages will be dowloaded once on machines
   #apt-get error if use machine same time
-  if Vagrant.has_plugin?("vagrant-cachier") 
-    config.cache.scope = :box
-  end
+  #if Vagrant.has_plugin?("vagrant-cachier") 
+  #  config.cache.scope = :box
+  #end
 
   
   ############################
@@ -63,15 +63,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ] 
   network_prefix = '192.168'
 
-
-  # WARNING!!! Destroy machines before change this parametrs to preasume machines LEAK.
-  # machines that exists and will not exists in new Vagrantfile will LEAK, and can be running in background. 
-  # But you still can delete them from virtualbox
   topology_script_dir = '/topology'
   #topology = "none"
   topology = "ring"
   #topology = "mesh"
 
+  # WARNING!!! Destroy machines before change this parametrs to preasume machines LEAK.
+  # machines that exists and will not exists in new Vagrantfile will LEAK, and can be running in background. 
+  # But you still can delete them from virtualbox
+  #
   routers_count = 4
   nodes_count = 1
 
@@ -127,12 +127,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       router.vm.provision 'topology', run: 'always', type: 'shell' do |s| 
         s.inline = "bash #{topology_script_dir}/#{topology}.sh"
       end
-
-      router.vm.provision 'local', run: 'once', type: :shell do |s| 
-        s.path = "./config/install_router.sh"
-        s.args = [guest_brige, "#{router_num}", "#{routers_count}", interface_list]
-      end
-
     end #router vm
 
     # this router nodes vms cycle
